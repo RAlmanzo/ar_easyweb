@@ -4,6 +4,7 @@ import Link from "next/link";
 import MobileNavigationButton from "./mobile-navigation-button";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 import { useState } from "react";
+import NavigationLinks from "./navigation-links";
 
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,7 @@ export default function Navigation() {
                     </Link>
 
                     <div className="hidden md:flex items-center gap-6">
-                        <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-                        <Link href="/diensten" onClick={() => setIsOpen(false)}>Diensten</Link>
-                        <Link href="/portfolio" onClick={() => setIsOpen(false)}>Portfolio</Link>
-                        <Link href="/over" onClick={() => setIsOpen(false)}>Over Mij</Link>
-                        <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+                        <NavigationLinks isOpen={isOpen} setIsOpen={setIsOpen} />
                     </div>
 
                     <MobileNavigationButton isOpen={isOpen} setIsOpen={setIsOpen} />
