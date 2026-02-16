@@ -121,8 +121,25 @@
     @apply border-border outline-ring/50;
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     @apply bg-background text-foreground;
+  }
+}
+
+.logoText path {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: logo-text 9s cubic-bezier(.77, 0, .175, 1) forwards;
+}
+
+@keyframes logo-text {
+  0% {
+    stroke-dashoffset: 3000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
   }
 }
