@@ -28,7 +28,7 @@ export default function Hero() {
 
             <div className="max-w-8xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
-                    Moderne websites voor KMO's
+                    Moderne websites voor KMO&apos;s
                 </h2>
                 <p className="text-lg sm:text-xl text-foreground mb-8 text-pretty leading-relaxed max-w-2xl mx-auto">
                     Ik bouw snelle, veilige en schaalbare websites van eenvoudige marketingwebsites tot headless
