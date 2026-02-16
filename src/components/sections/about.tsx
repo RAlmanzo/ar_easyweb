@@ -1,12 +1,12 @@
 import { fadeInUp } from "@/lib/animations";
-import * as motion from "framer-motion/client"
 import { Code, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
+import * as motion from "motion/react-client"
 
 export default function About() {
     return (
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#DCEEBA]/30">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">
                         Professionele weboplossingen op maat
@@ -37,10 +37,10 @@ export default function About() {
                     ].map((feature, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 60 }}
+                            initial={{ opacity: 0, y: 150 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false, margin: "-100px" }}
-                            transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{ duration: 2, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                         >
                             <Card className="border-border shadow-sm hover:shadow-md transition-shadow">
                                 <CardContent className="pt-6">

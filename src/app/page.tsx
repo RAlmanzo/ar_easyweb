@@ -1,5 +1,6 @@
 import About from "@/components/sections/about";
 import Hero from "@/components/sections/hero";
+import Services from "@/components/sections/services";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <main className="flex min-h-screen w-full max-w-6xl flex-col items-center justify-between py-32 bg-[#eaf3e5]">
         <Hero />
         <About />
+        <Services />
       </main>
     </div>
   );
