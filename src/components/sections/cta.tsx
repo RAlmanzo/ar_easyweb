@@ -2,10 +2,11 @@ import * as motion from "motion/react-client"
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
+import { scaleIn } from "@/lib/animations";
 
 export default function Cta() {
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 ">
             <div className="max-w-4xl mx-auto text-center">
                 <motion.div {...scaleIn}>
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">
