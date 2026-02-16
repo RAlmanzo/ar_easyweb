@@ -22,7 +22,7 @@ export default function Services() {
                             <CardContent className="pt-6">
                                 <h3 className="text-2xl font-semibold text-foreground mb-4">Frontend Websites</h3>
                                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                                    Perfect voor landingspagina's, portfolio's, en kleine bedrijfswebsites. Snelle laadtijden, moderne
+                                    Perfect voor landingspagina&apos;s, portfolio&apos;s, en kleine bedrijfswebsites. Snelle laadtijden, moderne
                                     uitstraling.
                                 </p>
                                 <ul className="space-y-3 mb-6">
