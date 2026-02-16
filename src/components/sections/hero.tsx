@@ -1,11 +1,17 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link"
 import { Button } from "../ui/button";
-import LogoText from "../svg/easyweb-text-svg";
+import LogoText from "../svg/logo-text";
+import * as motion from "framer-motion/client"
 
 export default function Hero() {
     return (
-        <section className="pt-2 pb-20 px-4 sm:px-6 lg:px-8 ">
+        <motion.section
+            initial={{ opacity: 0, y: 200 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+            className="pt-2 pb-20 px-4 sm:px-6 lg:px-8 ">
+
             <div className="w-full max-w-8xl mx-auto flex flex-col md:flex-row items-center justify-center pb-12">
                 <video
                     src="/logo.mp4"
@@ -15,7 +21,7 @@ export default function Hero() {
                     playsInline
                     className="w-72 md:w-96 h-auto rounded-lg"
                 />
-                <h1 className="font-extrabold text-4xl md:text-6xl text-foreground">
+                <h1 className="flex items-center font-extrabold text-4xl md:text-6xl text-foreground">
                     <LogoText className="text-[#32CD32]" />
                 </h1>
             </div>
@@ -42,6 +48,6 @@ export default function Hero() {
                     </Link>
                 </div>
             </div>
-        </section >
+        </motion.section >
     );
 }
