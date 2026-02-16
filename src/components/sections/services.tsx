@@ -1,4 +1,4 @@
-import * as motion from "framer-motion/client"
+import * as motion from "motion/react-client"
 import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -7,7 +7,7 @@ import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 
 export default function Services() {
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
             <div className="max-w-6xl mx-auto">
                 <motion.div {...fadeInUp} className="text-center mb-16 max-w-3xl">
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Diensten</h2>

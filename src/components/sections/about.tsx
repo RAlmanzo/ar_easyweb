@@ -1,7 +1,7 @@
 import { fadeInUp } from "@/lib/animations";
-import * as motion from "framer-motion/client"
 import { Code, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
+import * as motion from "motion/react-client"
 
 export default function About() {
     return (
@@ -37,10 +37,10 @@ export default function About() {
                     ].map((feature, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 60 }}
+                            initial={{ opacity: 0, y: 150 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false, margin: "-100px" }}
-                            transition={{ duration: 1.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{ duration: 2, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                         >
                             <Card className="border-border shadow-sm hover:shadow-md transition-shadow">
                                 <CardContent className="pt-6">
