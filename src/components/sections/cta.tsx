@@ -6,8 +6,8 @@ import { scaleIn } from "@/lib/animations";
 
 export default function Cta() {
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 ">
-            <div className="max-w-4xl mx-auto text-center">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#DCEEBA]/30 w-full">
+            <div className="max-w-6xl mx-auto text-center">
                 <motion.div {...scaleIn}>
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">
                         Klaar voor een nieuwe website?
