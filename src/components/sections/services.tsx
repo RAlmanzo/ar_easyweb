@@ -3,7 +3,7 @@ import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { fadeInUp } from "@/lib/animations";
+import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 
 export default function Services() {
     return (
