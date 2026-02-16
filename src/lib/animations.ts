@@ -23,5 +23,5 @@ export const scaleIn = {
     initial: { opacity: 0, scale: 0.8 },
     whileInView: { opacity: 1, scale: 1 },
     viewport: { once: false, margin: "-100px" },
-    transition: { duration: 2, ease: [0.22, 1, 0.36, 1] as any },
+    transition: { duration: 2, ease: [0.22, 1, 0.36, 1] as const },
 }
