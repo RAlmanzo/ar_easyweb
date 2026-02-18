@@ -5,7 +5,7 @@ import * as motion from "motion/react-client"
 
 export default function About() {
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#DCEEBA]/30">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[linear-gradient(45deg,#999_5%,#fff_18%,#ccc_30%,#ddd_50%,#ccc_70%,#fff_80%,#999_95%)]">
             <div className="max-w-6xl mx-auto">
                 <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">
