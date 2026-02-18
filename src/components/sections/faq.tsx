@@ -1,3 +1,5 @@
+import * as motion from "motion/react-client"
+
 export default function FAQ() {
     type FAQItem = {
         question: string
@@ -57,4 +59,7 @@ export default function FAQ() {
         },
     ]
 
+    return (
+        
+    );
 }
