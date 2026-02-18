@@ -2,6 +2,15 @@ import { GitBranchPlus, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
+    const links = [
+        { name: "Home", path: "/" },
+        { name: "Diensten", path: "/diensten" },
+        { name: "Portfolio", path: "/portfolio" },
+        { name: "Over Mij", path: "/over" },
+        { name: "Contact", path: "/contact" }
+    ];
+
+
     return (
         <footer className="border-t border-border bg-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -16,32 +25,16 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h4 className="text-sm font-semibold text-foreground">Navigatie</h4>
                         <ul className="space-y-2">
-                            <li>
-                                <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/diensten"
-                                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                    Diensten
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/portfolio"
-                                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                    Portfolio
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/over" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Over Mij
-                                </Link>
-                            </li>
+                            {links.map(link => (
+                                <li key={link.path}>
+                                    <Link
+                                        href={link.path}
+                                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
