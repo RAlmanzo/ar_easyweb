@@ -1,5 +1,6 @@
 import About from "@/components/sections/about";
 import Cta from "@/components/sections/cta";
+import FAQ from "@/components/sections/faq";
 import Hero from "@/components/sections/hero";
 import Services from "@/components/sections/services";
 
@@ -11,6 +12,7 @@ export default function Home() {
         <About />
         <Services />
         <Cta />
+        <FAQ />
       </main>
     </div>
   );
