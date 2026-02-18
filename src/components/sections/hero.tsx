@@ -3,18 +3,14 @@ import Link from "next/link"
 import { Button } from "../ui/button";
 import LogoText from "../svg/logo-text";
 import * as motion from "motion/react-client"
+import { scaleIn } from "@/lib/animations";
 
 export default function Hero() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 150 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-            className="pt-2 pb-20 px-4 sm:px-6 lg:px-8 ">
-
+        <section className="pt-2 pb-20 px-4 sm:px-6 lg:px-8 ">
             <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center pb-12">
                 <video
-                    src="/logo.mp4"
+                    src="/ar_easyweb_logo.mp4"
                     autoPlay
                     loop
                     muted
@@ -26,11 +22,11 @@ export default function Hero() {
                 </h1>
             </div>
 
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
+            <motion.div {...scaleIn} className="max-w-6xl mx-auto">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-background mb-6 text-balance">
                     Moderne websites voor KMO&apos;s
                 </h2>
-                <p className="text-lg sm:text-xl text-foreground mb-8 text-pretty leading-relaxed max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-background mb-8 text-pretty leading-relaxed max-w-2xl mx-auto">
                     Ik bouw snelle, veilige en schaalbare websites van eenvoudige marketingwebsites tot headless
                     CMS-oplossingen.
                 </p>
@@ -47,7 +43,7 @@ export default function Hero() {
                         </Button>
                     </Link>
                 </div>
-            </div>
-        </motion.section >
+            </motion.div>
+        </section >
     );
 }
