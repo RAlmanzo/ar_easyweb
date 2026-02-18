@@ -6,7 +6,7 @@ import { scaleIn } from "@/lib/animations";
 
 export default function Cta() {
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#DCEEBA]/30 w-full">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[linear-gradient(45deg,#999_5%,#fff_18%,#ccc_30%,#ddd_50%,#ccc_70%,#fff_80%,#999_95%)] w-full">
             <div className="max-w-6xl mx-auto text-center">
                 <motion.div {...scaleIn}>
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">
