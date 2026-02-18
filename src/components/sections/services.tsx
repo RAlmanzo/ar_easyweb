@@ -10,7 +10,7 @@ export default function Services() {
         <section className="py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
             <div className="max-w-6xl mx-auto">
                 <motion.div {...fadeInUp} className="text-center mb-16 max-w-3xl">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Diensten</h2>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-background mb-4 text-balance">Diensten</h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
                         Van concept tot lancering. Ik begeleid je door het hele proces.
                     </p>
