@@ -2,7 +2,7 @@ import Cta from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
-import { button } from "motion/react-client";
+import * as motion from "motion/react-client"
 import Image from "next/image";
 import Link from "next/link";
 
