@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,6 +47,27 @@ export default function About() {
                                     className="object-cover"
                                 />
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-12">
+                        <div>
+                            <Card className="border-border shadow-sm h-full">
+                                <CardContent className="pt-6">
+                                    <h3 className="text-xl font-semibold text-foreground mb-6">Tools & Technologieën</h3>
+                                    <div className="flex flex-wrap gap-3">
+                                        {tools.map((tool, index) => (
+                                            <span key={index} className="px-4 py-2 bg-muted rounded-lg text-sm text-foreground">
+                                                {tool}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </CardContent>
+                            </Card>
                         </div>
                     </div>
                 </div>
