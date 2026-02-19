@@ -5,6 +5,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function About() {
+    const tools = [
+        "Next.js",
+        "React",
+        "HTML",
+        "Tailwind CSS",
+        "JavaScript",
+        "TypeScript",
+        "Sanity Headless CMS",
+        "Vercel",
+        ".NET Backend",
+    ]
+
     return (
         <div className="min-h-screen">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
