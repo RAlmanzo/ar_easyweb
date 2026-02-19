@@ -19,7 +19,7 @@ export default function Hero() {
                     preload="metadata"
                 />
                 <h1 className="flex items-center font-extrabold text-4xl md:text-6xl text-foreground">
-                    <LogoText className="text-[#32CD32]" />
+                    <LogoText className="text-[#32CD32]/70" />
                 </h1>
             </div>
 
