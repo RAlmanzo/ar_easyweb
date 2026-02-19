@@ -15,7 +15,12 @@ export default function NavigationLinks({ isOpen, setIsOpen }: MenuLinkProps) {
         return pathname.startsWith(path)
     }
 
-    const links = [
+    type LinkItem = {
+        name: string;
+        path: string;
+    }
+
+    const links: LinkItem[] = [
         { name: "Home", path: "/" },
         { name: "Diensten", path: "/diensten" },
         { name: "Portfolio", path: "/portfolio" },

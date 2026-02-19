@@ -16,9 +16,10 @@ export default function Hero() {
                     muted
                     playsInline
                     className="w-72 md:w-96 h-auto rounded-lg"
+                    preload="metadata"
                 />
                 <h1 className="flex items-center font-extrabold text-4xl md:text-6xl text-foreground">
-                    <LogoText className="text-[#32CD32]" />
+                    <LogoText className="text-[#32CD32]/70" />
                 </h1>
             </div>
 
