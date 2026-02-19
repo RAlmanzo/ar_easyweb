@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function About() {
@@ -36,11 +37,13 @@ export default function About() {
                         </div>
 
                         <div>
-                            <div className="aspect-square rounded-lg overflow-hidden bg-muted">
-                                <img
+                            <div className="aspect-square rounded-lg overflow-hidden bg-transparent">
+                                <Image
                                     src="/profile-picture.png"
-                                    alt="Developer portret"
-                                    className="w-full h-full object-cover"
+                                    alt="Developer Almanzo Rosseel portret"
+                                    width={600}
+                                    height={600}
+                                    className="object-cover"
                                 />
                             </div>
                         </div>
