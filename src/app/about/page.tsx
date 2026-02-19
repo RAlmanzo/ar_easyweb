@@ -109,7 +109,7 @@ export default function About() {
             </section>
 
             <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-                <div className="max-w-7xl mx-auto">
+                <motion.div {...scaleIn} className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Tools</h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
@@ -127,7 +127,7 @@ export default function About() {
                             </div>
                         </CardContent>
                     </Card>
-                </div>
+                </motion.div>
             </section>
 
             <section className="py-20 px-4 sm:px-6 lg:px-8">
