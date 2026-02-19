@@ -66,22 +66,20 @@ export default function About() {
 
             <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-12">
-                        <div>
-                            <Card className="border-border shadow-sm h-full">
-                                <CardContent className="pt-6">
-                                    <h3 className="text-xl font-semibold text-foreground mb-6">Tools & Technologieën</h3>
-                                    <div className="flex flex-wrap gap-3">
-                                        {tools.map((tool, index) => (
-                                            <span key={index} className="px-4 py-2 bg-muted rounded-lg text-sm text-foreground">
-                                                {tool}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Tools & Technologieën</h2>
                     </div>
+                    <Card className="border-border shadow-sm h-full">
+                        <CardContent className="flex justify-center items-center">
+                            <div className="flex gap-3 flex-wrap justify-center">
+                                {tools.map((tool, index) => (
+                                    <span key={index} className="px-4 py-2 bg-muted rounded-lg text-sm text-foreground">
+                                        {tool}
+                                    </span>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </section>
         </div>
