@@ -12,16 +12,16 @@ export default function About() {
                             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Over Mij</h1>
                             <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                                 <p>
-                                    Hallo! Ik ben een freelance web developer gespecialiseerd in het bouwen van moderne,
-                                    gebruiksvriendelijke websites voor kleine en middelgrote ondernemingen.
+                                    Hallo! Ik ben een freelance web developer gespecialiseerd in het bouwen van <strong>moderne,
+                                        gebruiksvriendelijke websites</strong> voor kleine en middelgrote ondernemingen.
                                 </p>
                                 <p>
-                                    Met meer dan 5 jaar ervaring in webontwikkeling help ik bedrijven met een professionele online
-                                    aanwezigheid. Of je nu een simpele landingspagina nodig hebt of een complexe website met een
-                                    contentbeheersysteem, ik denk graag met je mee.
+                                    Ik help bedrijven bij het creëren van een <strong>professionele online aanwezigheid</strong>.
+                                    Of je nu een eenvoudige landingspagina nodig hebt of een uitgebreide website
+                                    met een contentmanagementsysteem, ik denk graag met je mee en zorg dat het resultaat past bij jouw doelen.
                                 </p>
                                 <p>
-                                    Mijn focus ligt op snelheid, gebruiksvriendelijkheid en schaalbaarheid. Ik werk met de nieuwste
+                                    Mijn focus ligt op <strong>snelheid, gebruiksvriendelijkheid en schaalbaarheid</strong>. Ik werk met de nieuwste
                                     technologieën om websites te bouwen die niet alleen mooi zijn, maar ook presteren.
                                 </p>
                             </div>
