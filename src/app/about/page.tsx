@@ -1,6 +1,8 @@
+import Cta from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
+import { button } from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -35,6 +37,13 @@ export default function About() {
         },
     ]
 
+    const ctaContent = {
+        title: "Laten we kennismaken",
+        description: "Benieuwd wat ik voor jouw bedrijf kan betekenen? Neem vrijblijvend contact op.",
+        buttonText: "Plan een gesprek",
+    }
+
+
     return (
         <div className="min-h-screen">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -67,16 +76,14 @@ export default function About() {
                             </div>
                         </div>
 
-                        <div>
-                            <div className="aspect-square rounded-lg overflow-hidden bg-transparent">
-                                <Image
-                                    src="/profile-picture.png"
-                                    alt="Developer Almanzo Rosseel portret"
-                                    width={600}
-                                    height={600}
-                                    className="object-cover"
-                                />
-                            </div>
+                        <div className="flex justify-center items-center aspect-square rounded-lg overflow-hidden bg-transparent">
+                            <Image
+                                src="/profile-picture.png"
+                                alt="Developer Almanzo Rosseel portret"
+                                width={600}
+                                height={600}
+                                className="object-cover"
+                            />
                         </div>
                     </div>
                 </div>
@@ -127,6 +134,8 @@ export default function About() {
                     </div>
                 </div>
             </section>
+
+            <Cta content={ctaContent} />
         </div>
     );
 }
