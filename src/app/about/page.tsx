@@ -17,6 +17,24 @@ export default function About() {
         ".NET Backend",
     ]
 
+    const approaches = [
+        {
+            title: "Persoonlijke aanpak",
+            description:
+                "Als freelancer werk je direct met mij. Geen tussenpersonen, heldere communicatie en snelle beslissingen.",
+        },
+        {
+            title: "Moderne technologieën",
+            description:
+                "Ik werk met de nieuwste tools en frameworks om toekomstbestendige websites te bouwen die schaalbaar zijn.",
+        },
+        {
+            title: "Transparante prijzen",
+            description:
+                "Duidelijke offertes zonder verborgen kosten. Je weet precies waar je aan toe bent voordat we starten.",
+        },
+    ]
+
     return (
         <div className="min-h-screen">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -67,7 +85,10 @@ export default function About() {
             <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Tools & Technologieën</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Tools</h2>
+                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
+                            Technologieën waar ik dagelijks mee werk
+                        </p>
                     </div>
                     <Card className="border-border shadow-sm h-full">
                         <CardContent className="flex justify-center items-center">
@@ -80,6 +101,30 @@ export default function About() {
                             </div>
                         </CardContent>
                     </Card>
+                </div>
+            </section>
+
+            <section className="py-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Mijn Aanpak</h2>
+                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
+                            Heldere communicatie en kwaliteit staan voorop
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {approaches.map((approach, index) => (
+                            <div key={index}>
+                                <Card className="border-border shadow-sm h-full">
+                                    <CardContent className="pt-6">
+                                        <h3 className="text-xl font-semibold text-foreground mb-3">{approach.title}</h3>
+                                        <p className="text-muted-foreground leading-relaxed">{approach.description}</p>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </div>
