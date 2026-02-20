@@ -11,6 +11,7 @@ type serviceFeatures = {
 };
 
 interface ServiceCardProps {
+    id: string;
     leftAnimation: React.ComponentProps<typeof motion.div>;
     rightAnimation: React.ComponentProps<typeof motion.div>;
     title: string;
@@ -22,9 +23,9 @@ interface ServiceCardProps {
     reverse: boolean;
 }
 
-export default function ServiceCard({ leftAnimation, rightAnimation, title, firstParagraph, secondParagraph, features, benefitsTitle, benefits, reverse }: ServiceCardProps) {
+export default function ServiceCard({ id, leftAnimation, rightAnimation, title, firstParagraph, secondParagraph, features, benefitsTitle, benefits, reverse }: ServiceCardProps) {
     return (
-        <section id="frontend" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 overflow-hidden">
+        <section id={id} className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div {...(reverse ? rightAnimation : leftAnimation)} className={reverse ? "lg:order-2" : ""}>

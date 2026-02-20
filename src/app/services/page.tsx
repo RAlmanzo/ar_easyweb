@@ -5,6 +5,7 @@ import * as motion from "motion/react-client"
 
 export default function Services() {
     const firstServiceContent = {
+        id: "frontend",
         leftAnimation: fadeInLeft,
         rightAnimation: fadeInRight,
         title: "Frontend Websites",
@@ -43,6 +44,7 @@ export default function Services() {
     };
 
     const secondServiceContent = {
+        id: "cms",
         leftAnimation: fadeInLeft,
         rightAnimation: fadeInRight,
         title: "Headless CMS Websites",
@@ -80,7 +82,7 @@ export default function Services() {
     };
 
     return (
-        <div className="min-h-screen overflow-y-hidden">
+        <div className="min-h-screen">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
