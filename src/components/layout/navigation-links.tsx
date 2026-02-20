@@ -22,9 +22,9 @@ export default function NavigationLinks({ isOpen, setIsOpen }: MenuLinkProps) {
 
     const links: LinkItem[] = [
         { name: "Home", path: "/" },
-        { name: "Diensten", path: "/diensten" },
+        { name: "Diensten", path: "/services" },
         { name: "Portfolio", path: "/portfolio" },
-        { name: "Over Mij", path: "/over" },
+        { name: "Over Mij", path: "/about" },
         { name: "Contact", path: "/contact" }
     ];
 
