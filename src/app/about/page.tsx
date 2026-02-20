@@ -1,11 +1,12 @@
 import Cta from "@/components/sections/cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { fadeInLeft, fadeInRight, fadeInUp, scaleIn } from "@/lib/animations";
+import { fadeInLeft, fadeInUp, scaleIn } from "@/lib/animations";
 import { ArrowRight } from "lucide-react";
 import * as motion from "motion/react-client"
 import Image from "next/image";
 import Link from "next/link";
+import Aboutsection from "@/components/sections/about";
 
 export default function About() {
     const tools = [
@@ -19,6 +20,11 @@ export default function About() {
         "Vercel",
         ".NET Backend",
     ]
+
+    const aboutContent = {
+        title: "Mijn Aanpak",
+        description: "Heldere communicatie en kwaliteit staan voorop",
+    }
 
     const approaches = [
         {
@@ -43,7 +49,6 @@ export default function About() {
         description: "Benieuwd wat ik voor jouw bedrijf kan betekenen? Neem vrijblijvend contact op.",
         buttonText: "Plan een gesprek",
     }
-
 
     return (
         <div className="min-h-screen overflow-x-hidden">
@@ -130,29 +135,7 @@ export default function About() {
                 </motion.div>
             </section>
 
-            <section className="py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Mijn Aanpak</h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
-                            Heldere communicatie en kwaliteit staan voorop
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {approaches.map((approach, index) => (
-                            <div key={index}>
-                                <Card className="border-border shadow-sm h-full">
-                                    <CardContent className="pt-6">
-                                        <h3 className="text-xl font-semibold text-foreground mb-3">{approach.title}</h3>
-                                        <p className="text-muted-foreground leading-relaxed">{approach.description}</p>
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <Aboutsection aboutContent={aboutContent} cardItems={approaches} />
 
             <Cta content={ctaContent} />
         </div>
