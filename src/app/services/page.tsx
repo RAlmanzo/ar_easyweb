@@ -1,6 +1,6 @@
 import ServiceCard from "@/components/ui/service-card";
 import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
-import { Palette, Smartphone, Zap } from "lucide-react";
+import { Code, Database, Layers, Palette, Smartphone, Zap } from "lucide-react";
 import * as motion from "motion/react-client"
 
 export default function Services() {
@@ -38,13 +38,51 @@ export default function Services() {
             "Moderne, aantrekkelijke designs",
             "Lage hostingkosten",
             "Hoge beveiligingsstandaard",
-        ]
+        ],
+        reverse: false,
+    };
+
+    const secondServiceContent = {
+        leftAnimation: fadeInLeft,
+        rightAnimation: fadeInRight,
+        title: "Headless CMS Websites",
+        firstParagraph: "Voor bedrijven die regelmatig content willen aanpassen en volledige controle willen over hun website-inhoud.",
+        secondParagraph: "Een headless CMS biedt het beste van twee werelden: de flexibiliteit en snelheid van een moderne frontend, gecombineerd met een gebruiksvriendelijk contentbeheersysteem.",
+        features: [
+            {
+                icon: <Database className="h-6 w-6 text-[#32CD32]" />,
+                title: "Content Beheer",
+                description:
+                    "Eenvoudig je content beheren via een intuïtieve interface. Geen technische kennis vereist.",
+            },
+            {
+                icon: <Layers className="h-6 w-6 text-[#32CD32]" />,
+                title: "Flexibele Architectuur",
+                description:
+                    "Schaalbare opzet die meegroeit met jouw business. Klaar voor de toekomst.",
+            },
+            {
+                icon: <Code className="h-6 w-6 text-[#32CD32]" />,
+                title: "API-First Aanpak",
+                description:
+                    "Integreer eenvoudig met andere tools en platformen via moderne API's.",
+            },
+        ],
+        benefitsTitle: "Perfect voor",
+        benefits: [
+            "Blogs en nieuwswebsites",
+            "E-commerce platformen",
+            "Corporate websites met veel content",
+            "Websites met meerdere beheerders",
+            "Multi-channel publicatie",
+        ],
+        reverse: true,
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen overflow-y-hidden">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
                         <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Diensten</h1>
                         <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
@@ -56,6 +94,7 @@ export default function Services() {
             </section>
 
             <ServiceCard {...firstServiceContent} />
+            <ServiceCard {...secondServiceContent} />
         </div>
     );
 }
