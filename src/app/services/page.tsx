@@ -1,3 +1,4 @@
+import Cta from "@/components/sections/cta";
 import ServiceCard from "@/components/ui/service-card";
 import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 import { Code, Database, Layers, Palette, Smartphone, Zap } from "lucide-react";
@@ -104,9 +105,15 @@ export default function Services() {
         },
     ]
 
+    const ctaContent = {
+        title: "Welke oplossing past bij jou?",
+        description: "Neem contact op en ik help je graag verder met advies op maat.",
+        buttonText: "Plan een gesprek",
+    }
+
     return (
         <div className="min-h-screen">
-            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
                         <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Diensten</h1>
@@ -121,7 +128,7 @@ export default function Services() {
             <ServiceCard {...firstServiceContent} />
             <ServiceCard {...secondServiceContent} />
 
-            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[linear-gradient(45deg,#999_5%,#fff_18%,#ccc_30%,#ddd_50%,#ccc_70%,#fff_80%,#999_95%)]">
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeInUp} className="text-center mb-16">
                         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Hoe werken we samen?</h2>
@@ -149,6 +156,8 @@ export default function Services() {
                     </div>
                 </div>
             </section>
+
+            <Cta content={ctaContent} />
         </div>
     );
 }
