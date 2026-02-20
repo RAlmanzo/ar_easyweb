@@ -53,6 +53,7 @@ export default function Footer() {
                             <a
                                 href="mailto:contact@webdev.be"
                                 className="text-muted-foreground hover:text-foreground transition-colors"
+                                aria-label="Stuur een e-mail naar contact@webdev.be"
                             >
                                 <Mail size={20} />
                             </a>
@@ -61,6 +62,7 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-muted-foreground hover:text-foreground transition-colors"
+                                aria-label="Bezoek mijn LinkedIn-profiel"
                             >
                                 <Linkedin size={20} />
                             </a>
@@ -69,6 +71,7 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-muted-foreground hover:text-foreground transition-colors"
+                                aria-label="Bezoek mijn GitHub-profiel"
                             >
                                 <GitBranchPlus size={20} />
                             </a>
