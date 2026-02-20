@@ -11,13 +11,12 @@ export default function Hero() {
             <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center pb-12">
                 <video
                     src="/ar_easyweb_logo.mp4"
-                    poster="/logoar.png"
                     autoPlay
                     loop
                     muted
                     playsInline
                     className="w-72 md:w-96 h-auto rounded-lg"
-                    preload="none"
+                    preload="metadata"
                     aria-hidden="true"
                 >Je browser ondersteunt dit videoformaat niet.</video>
                 <h1 className="flex items-center font-extrabold text-4xl md:text-6xl text-foreground">
