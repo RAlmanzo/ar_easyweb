@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { fadeInUp } from "@/lib/animations";
+import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 import { ArrowRight, CheckCircle2, Palette, Smartphone, Zap } from "lucide-react";
 import * as motion from "motion/react-client"
 import Link from "next/link";
