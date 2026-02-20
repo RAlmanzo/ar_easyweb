@@ -1,5 +1,4 @@
 import { fadeInUp } from "@/lib/animations";
-import { Code, Users, Zap } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import * as motion from "motion/react-client"
 

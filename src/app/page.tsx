@@ -4,7 +4,6 @@ import FAQ from "@/components/sections/faq";
 import Hero from "@/components/sections/hero";
 import Services from "@/components/sections/services";
 import { Code, Users, Zap } from "lucide-react";
-import { title } from "process";
 
 export default function Home() {
   const ctaContent = {

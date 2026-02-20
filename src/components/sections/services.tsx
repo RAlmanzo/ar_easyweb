@@ -35,7 +35,7 @@ export default function Services() {
                                         ),
                                     )}
                                 </ul>
-                                <Link href="/diensten#frontend">
+                                <Link href="/services#frontend">
                                     <Button variant="outline" className="group bg-transparent">
                                         Meer info
                                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -62,7 +62,7 @@ export default function Services() {
                                         ),
                                     )}
                                 </ul>
-                                <Link href="/diensten#cms">
+                                <Link href="/services#cms">
                                     <Button variant="outline" className="group bg-transparent">
                                         Meer info
                                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
