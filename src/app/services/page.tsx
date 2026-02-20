@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInUp } from "@/lib/animations";
+import { ArrowRight, CheckCircle2, Palette, Smartphone, Zap } from "lucide-react";
 import * as motion from "motion/react-client"
 import Link from "next/link";
 
@@ -45,7 +46,7 @@ export default function Services() {
                                         "Hoge beveiligingsstandaard",
                                     ].map((item, index) => (
                                         <li key={index} className="flex items-center gap-3 text-muted-foreground">
-                                            <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
+                                            <CheckCircle2 className="h-5 w-5 text-accent shrink-0" />
                                             <span>{item}</span>
                                         </li>
                                     ))}
