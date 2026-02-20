@@ -81,6 +81,29 @@ export default function Services() {
         reverse: true,
     };
 
+    const steps = [
+        {
+            step: "01",
+            title: "Kennismaking",
+            description: "We bespreken jouw wensen, doelen en budget.",
+        },
+        {
+            step: "02",
+            title: "Ontwerp",
+            description: "Ik maak een design concept dat past bij jouw merk.",
+        },
+        {
+            step: "03",
+            title: "Ontwikkeling",
+            description: "De website wordt gebouwd met moderne technologieën.",
+        },
+        {
+            step: "04",
+            title: "Lancering",
+            description: "Je website gaat live en ik blijf beschikbaar voor support.",
+        },
+    ]
+
     return (
         <div className="min-h-screen">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -97,6 +120,35 @@ export default function Services() {
 
             <ServiceCard {...firstServiceContent} />
             <ServiceCard {...secondServiceContent} />
+
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[linear-gradient(45deg,#999_5%,#fff_18%,#ccc_30%,#ddd_50%,#ccc_70%,#fff_80%,#999_95%)]">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div {...fadeInUp} className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Hoe werken we samen?</h2>
+                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
+                            Een duidelijk proces van start tot finish
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-4 gap-8">
+                        {steps.map((step, index) => (
+                            <motion.div
+                                key={step.step}
+                                initial={{ opacity: 0, y: 100 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: false, margin: "-100px" }}
+                                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                            >
+                                <div className="text-center">
+                                    <div className="text-5xl font-bold text-[#32CD32] mb-4">{step.step}</div>
+                                    <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
+                                    <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }
