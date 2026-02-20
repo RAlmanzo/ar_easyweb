@@ -19,14 +19,15 @@ interface ServiceCardProps {
     features: serviceFeatures[];
     benefitsTitle: string;
     benefits: string[];
+    reverse: boolean;
 }
 
-export default function ServiceCard({ leftAnimation, rightAnimation, title, firstParagraph, secondParagraph, features, benefitsTitle, benefits }: ServiceCardProps) {
+export default function ServiceCard({ leftAnimation, rightAnimation, title, firstParagraph, secondParagraph, features, benefitsTitle, benefits, reverse }: ServiceCardProps) {
     return (
-        <section id="frontend" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-            <div className="max-w-7xl mx-auto">
+        <section id="frontend" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 overflow-hidden">
+            <div className="max-w-6xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <motion.div {...leftAnimation}>
+                    <motion.div {...(reverse ? rightAnimation : leftAnimation)} className={reverse ? "lg:order-2" : ""}>
                         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-balance">{title}</h2>
                         <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{firstParagraph}</p>
                         <p className="text-muted-foreground mb-8 leading-relaxed">{secondParagraph}</p>
@@ -51,7 +52,7 @@ export default function ServiceCard({ leftAnimation, rightAnimation, title, firs
                         </Link>
                     </motion.div>
 
-                    <motion.div {...rightAnimation} className="space-y-6">
+                    <motion.div {...(reverse ? leftAnimation : rightAnimation)} className={`space-y-6 ${reverse ? "lg:order-1" : ""}`}>
                         {features.map((card, index) => (
                             <Card key={index} className="border-border shadow-sm">
                                 <CardContent className="pt-6">
