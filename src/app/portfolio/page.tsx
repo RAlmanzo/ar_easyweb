@@ -1,3 +1,5 @@
+import * as motion from "motion/react-client"
+
 export default function Portfolio() {
     const projects = [
         {
@@ -49,4 +51,23 @@ export default function Portfolio() {
             tags: ["Next.js", "Strapi", "Member Portal"],
         },
     ]
+
+    return (
+        <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center max-w-3xl mx-auto"
+                >
+                    <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Portfolio</h1>
+                    <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+                        Een selectie van recente projecten waar ik trots op ben. Van kleine bedrijfswebsites tot complexe
+                        CMS-oplossingen.
+                    </p>
+                </motion.div>
+            </div>
+        </section>
+    )
 }
