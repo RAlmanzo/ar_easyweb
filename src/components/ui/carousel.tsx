@@ -28,7 +28,7 @@ export default function Carousel({ projects }: CarouselProps) {
     const prev = () => setRotation((prev) => prev + angle)
 
     return (
-        <div className="mx-auto relative w-full max-w-225 py-20">
+        <div className="mx-auto relative w-full max-w-225 py-20 pb-75 bg-muted/30">
             <section
                 className="relative mx-auto w-56.25 md:w-65 h-75 md:h-95 transform-3d"
                 style={{
@@ -42,17 +42,17 @@ export default function Carousel({ projects }: CarouselProps) {
                         className="absolute w-full h-full"
                         style={{
                             transform: `rotateY(${i * angle}deg) translateZ(clamp(250px,35vw,350px))`,
-                            WebkitBoxReflect: "below 2.5px linear-gradient(transparent, transparent, rgba(3,3,3,0.2))",
+                            WebkitBoxReflect: "below 2.5px linear-gradient(transparent, transparent, rgba(3,3,3,0.5))",
                         }}
                     >
                         <Link href={`/portfolio/${project.id}`}>
-                            <Card className="h-full flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-all p-1">
+                            <Card className="h-full flex flex-col overflow-hidden shadow-[0_10px_15px_rgba(255,0,0,0.5)] -xl transition-all p-1">
                                 <div className="relative h-30 sm:h-37.5 md:h-45 w-full overflow-hidden rounded-xl">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
                                         fill
-                                        className="object-cover"
+                                        className="object-cover transition-transform duration-300 hover:scale-125"
                                     />
                                 </div>
 
@@ -66,7 +66,7 @@ export default function Carousel({ projects }: CarouselProps) {
                 ))}
             </section>
 
-            <div className="flex justify-center gap-30 mt-25">
+            <div className="flex justify-center gap-40 md:gap-100 mt-25">
                 <button onClick={prev}>
                     <ArrowLeftCircle className="w-10 h-10 cursor-pointer text-[#32CD32] hover:text-[#228B22]" />
                 </button>
