@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const projectDetails: Record<string, {
     title: string;
@@ -41,7 +43,7 @@ const projectDetails: Record<string, {
         image: "/inca.jpg",
         tags: ["Next.js", "Tailwind CSS", "Responsive", "Forms"],
     },
-    
+
     "3": {
         title: "Coaching & Therapie",
         category: "Headless CMS",
