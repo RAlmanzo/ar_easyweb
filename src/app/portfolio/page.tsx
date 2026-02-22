@@ -1,6 +1,7 @@
 import { fadeInUp } from "@/lib/animations"
 import * as motion from "motion/react-client"
 import Carousel from "@/components/ui/carousel"
+import Cta from "@/components/sections/cta"
 
 
 export default function Portfolio() {
@@ -55,6 +56,12 @@ export default function Portfolio() {
         },
     ]
 
+    const ctaContent = {
+        title: "Laten we jouw project bespreken",
+        description: "Elk project is uniek. Neem contact op voor een gepersonaliseerde offerte.",
+        buttonText: "Start je project"
+    }
+
     return (
         <div className="min-h-screen overflow-hidden">
             <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -70,6 +77,7 @@ export default function Portfolio() {
             </section>
 
             <Carousel projects={projects} />
+            <Cta content={ctaContent} />
         </div>
     )
 }
