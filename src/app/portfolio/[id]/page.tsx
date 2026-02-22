@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const projectDetails: Record<string, {
+const projects: Record<string, {
     title: string;
     category: string;
     year: string;
@@ -102,9 +102,9 @@ const projectDetails: Record<string, {
     },
 }
 
-export default function ProjectDetails({ params }: { params: { id: string } }) {²
+export default function ProjectDetails({ params }: { params: { id: string } }) {
     const { id } = params
-    const project = projectDetails[id]
+    const project = projects[id]
 
     if (!project) {
         return (
@@ -120,8 +120,41 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
     }
 
     return (
-        <div className="min-h-screen p-8">
-            {/* render je project details */}
+        <div className="min-h-screen">
+            <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-5xl mx-auto">
+                    <Link
+                        href="/portfolio"
+                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+                    >
+                        <ArrowLeft size={20} />
+                        <span>Terug naar portfolio</span>
+                    </Link>
+
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                        <div className="text-sm text-accent font-medium mb-4">{project.category}</div>
+                        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">{project.title}</h1>
+
+                        <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
+                            <div className="flex items-center gap-2">
+                                <Calendar size={16} />
+                                <span>{project.year}</span>
+                            </div>
+                            <div>
+                                <span className="font-medium text-foreground">Client:</span> {project.client}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 mb-8">
+                            {project.tags.map((tag, index) => (
+                                <span key={index} className="text-sm bg-muted px-3 py-1 rounded-full text-muted-foreground">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
         </div>
     )
 
