@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import { use } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import Cta from "@/components/sections/cta";
 
 export const projects: Record<string, {
     title: string;
@@ -107,6 +108,12 @@ export const projects: Record<string, {
     },
 }
 
+const ctaContent = {
+    title: "Klaar voor jouw project?",
+    description: "Laten we samen bouwen aan jouw online succes.",
+    buttonText: "Neem contact op",
+}
+
 export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
     const project = projects[id]
@@ -126,11 +133,11 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
 
     return (
         <div className="min-h-screen">
-            <section className="pt-2 pb-2 px-4 md:px-6">
+            <section className="pt-30 pb-2 px-4 md:px-6">
                 <div className="max-w-5xl mx-auto">
                     <Link
                         href="/portfolio"
-                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-3"
                     >
                         <ArrowLeft size={20} />
                         <span>Terug naar portfolio</span>
@@ -161,7 +168,7 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                 </div>
             </section>
 
-            <section className="pb-2 px-4 md:px-6">
+            <section className="pb-5 px-4 md:px-6">
                 <div className="max-w-5xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -174,7 +181,7 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                 </div>
             </section>
 
-            <section className="py-2 px-4 md:px-6">
+            <section className="py-2 pb-10 px-4 md:px-6">
                 <div className="max-w-5xl mx-auto">
                     <div className="grid lg:grid-cols-3 gap-12">
                         <div className="lg:col-span-2 space-y-12">
@@ -226,7 +233,8 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                     </div>
                 </div>
             </section>
+
+            <Cta content={ctaContent} />
         </div>
     )
-
 }
