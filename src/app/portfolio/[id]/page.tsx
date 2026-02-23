@@ -4,7 +4,7 @@ import * as motion from "motion/react-client"
 import { ArrowLeft, Calendar } from "lucide-react";
 import { use } from "react";
 
-const projects: Record<string, {
+export const projects: Record<string, {
     title: string;
     category: string;
     year: string;
