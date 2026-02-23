@@ -6,6 +6,7 @@ import { use } from "react";
 import ProjectDetailsModal from "@/components/modals/projectdetails";
 
 import { projects } from "../../[id]/page";
+import Image from "next/image";
 
 export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
@@ -27,12 +28,25 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
     return (
 
         <ProjectDetailsModal title={project.title}>
-            <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+            <section className="pb-2 px-4 md:px-6">
+                <div className="max-w-3xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="aspect-video rounded-lg overflow-hidden shadow-lg"
+                    >
+                        <Image width={500} height={300} src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
+                    </motion.div>
+                </div>
+            </section>
+
+            <section className="pt-2 pb-2 px-4 md:px-6">
                 <div className="max-w-5xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                         <div className="text-sm text-accent font-medium mb-4">{project.category}</div>
 
-                        <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
+                        <div className="flex flex-wrap gap-6 text-sm text-foreground mb-8">
                             <div className="flex items-center gap-2">
                                 <Calendar size={16} />
                                 <span>{project.year}</span>
