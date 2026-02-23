@@ -3,6 +3,7 @@ import Link from "next/link";
 import * as motion from "motion/react-client"
 import { ArrowLeft, Calendar } from "lucide-react";
 import { use } from "react";
+import Image from "next/image";
 
 export const projects: Record<string, {
     title: string;
@@ -124,7 +125,7 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
 
     return (
         <div className="min-h-screen">
-            <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+            <section className="pt-2 pb-2 px-4 md:px-6">
                 <div className="max-w-5xl mx-auto">
                     <Link
                         href="/portfolio"
@@ -138,7 +139,7 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                         <div className="text-sm text-accent font-medium mb-4">{project.category}</div>
                         <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">{project.title}</h1>
 
-                        <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
+                        <div className="flex flex-wrap gap-6 text-sm text-foreground mb-8">
                             <div className="flex items-center gap-2">
                                 <Calendar size={16} />
                                 <span>{project.year}</span>
@@ -155,6 +156,19 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                                 </span>
                             ))}
                         </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            <section className="pb-2 px-4 md:px-6">
+                <div className="max-w-5xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="aspect-video rounded-lg overflow-hidden shadow-lg"
+                    >
+                        <Image width={500} height={300} src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
                     </motion.div>
                 </div>
             </section>
