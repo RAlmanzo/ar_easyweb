@@ -19,7 +19,7 @@ export default function ProjectDetailsModal({ children, title }: { children: Rea
 
     return (
         <Dialog open onOpenChange={handleOpenChange}>
-            <DialogContent className="w-full md:max-w-3xl md:h-[90vh] overflow-y-hidden">
+            <DialogContent className="w-full md:max-w-3xl md:h-[90vh] overflow-y-scroll no-scrollbar">
                 <DialogHeader>
                     <DialogTitle>{title}</DialogTitle>
                     <DialogDescription>
