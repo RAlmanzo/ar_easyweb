@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import * as motion from "motion/react-client"
+import { ArrowLeft, Calendar } from "lucide-react";
+import { use } from "react";
 
 const projects: Record<string, {
     title: string;
@@ -102,8 +105,8 @@ const projects: Record<string, {
     },
 }
 
-export default function ProjectDetails({ params }: { params: { id: string } }) {
-    const { id } = params
+export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params)
     const project = projects[id]
 
     if (!project) {
