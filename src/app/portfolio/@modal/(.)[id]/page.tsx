@@ -7,6 +7,7 @@ import ProjectDetailsModal from "@/components/modals/projectdetails";
 
 import { projects } from "../../[id]/page";
 import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
@@ -64,6 +65,59 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                             ))}
                         </div>
                     </motion.div>
+                </div>
+            </section>
+
+            <section className="py-2 px-4 md:px-6">
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid lg:grid-cols-3 gap-12">
+                        <div className="lg:col-span-2 space-y-12">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <h2 className="text-2xl font-bold text-foreground mb-4">De Uitdaging</h2>
+                                <p className="text-muted-foreground leading-relaxed">{project.challenge}</p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <h2 className="text-2xl font-bold text-foreground mb-4">De Oplossing</h2>
+                                <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <h2 className="text-2xl font-bold text-foreground mb-4">Het Resultaat</h2>
+                                <p className="text-muted-foreground leading-relaxed">{project.result}</p>
+                            </motion.div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <Card className="border-border shadow-sm">
+                                <CardContent className="pt-6">
+                                    <h3 className="text-lg font-semibold text-foreground mb-4">Diensten</h3>
+                                    <ul className="space-y-2">
+                                        {project.services.map((service, index) => (
+                                            <li key={index} className="text-sm text-muted-foreground">
+                                                • {service}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
                 </div>
             </section>
         </ProjectDetailsModal>
