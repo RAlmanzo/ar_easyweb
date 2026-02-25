@@ -4,11 +4,14 @@ import { sendEmail } from "@/actions/email";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
+import { formSchema } from "@/zod/Contact-form-schema";
 import { Mail, MapPin, Phone } from "lucide-react";
 import * as motion from "motion/react-client"
-import { useState } from "react";
+import { useActionState, useState } from "react";
 
 export default function ContactPage() {
+    const [state, formAction] = useActionState(sendEmail, null)
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -17,28 +20,33 @@ export default function ContactPage() {
         budget: "",
         deadline: "",
         message: "",
-        company: "",
+        companyWebsite: "",
     });
-    const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
 
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const [liveErrors, setLiveErrors] = useState<{
+        email?: string
+        phone?: string
+    }>({})
+
+    function handleOnChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const { name, value } = e.target
+
+        setFormData(prev => ({ ...prev, [name]: value }))
+
+        if (name === "email" || name === "phone") {
+            const fieldSchema = formSchema.shape[name]
+            const result = fieldSchema.safeParse(value)
+
+            setLiveErrors(prev => ({
+                ...prev,
+                [name]: result.success ? undefined : result.error.issues[0].message,
+            }))
+        }
+    }
+
+    /*const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };
-
-    const handleOnSubmit = async () => {
-        setLoading(true);
-        /*try {
-            await sendContactForm(form, window.navigator?.connection?.downlink || "unknown");
-            setSuccess(true);
-        } catch (err: any) {
-            alert(err.message || "Er is iets misgegaan.");
-        } finally {
-            setLoading(false);
-        }*/
-    };
-
-
+    };*/
 
     /*const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -47,10 +55,6 @@ export default function ContactPage() {
         alert("Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.")
         setFormData({ name: "", company: "", email: "", message: "" })
     }*/
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value })
-    }
 
     return (
         <div className="min-h-screen">
@@ -74,27 +78,33 @@ export default function ContactPage() {
                         <motion.div {...fadeInLeft} className="lg:col-span-2">
                             <Card className="border-border shadow-sm">
                                 <CardContent className="pt-6">
-                                    <form className="space-y-6">
+                                    <form action={formAction} className="space-y-6">
                                         <label htmlFor="name">Naam *</label>
-                                        <input name="name" placeholder="Naam" value={formData.name} onChange={handleOnChange} className="w-full p-3 border rounded" />
+                                        {state?.errors?.name && <p className="text-red-500">{state.errors.name}</p>}
+
+                                        <input name="name" placeholder="Naam" value={formData.name} className="w-full p-3 border rounded" required />
 
                                         <label htmlFor="name">Email *</label>
-                                        <input name="email" placeholder="Email" value={formData.email} onChange={handleOnChange} className="w-full p-3 border rounded" />
+                                        {liveErrors.email && (<p className="text-red-500 text-sm">{liveErrors.email}</p>)}
+                                        {state?.errors?.email && <p className="text-red-500">{state.errors.email}</p>}
+                                        <input name="email" placeholder="Email" value={formData.email} onChange={handleOnChange} className="w-full p-3 border rounded" required />
 
-                                        <label htmlFor="name">Telefoon *</label>
+                                        <label htmlFor="name">Telefoon</label>
+                                        {liveErrors.phone && (<p className="text-red-500 text-sm">{liveErrors.phone}</p>)}
+                                        {state?.errors?.phone && <p className="text-red-500">{state.errors.phone}</p>}
                                         <input name="phone" placeholder="Telefoon (optioneel)" value={formData.phone} onChange={handleOnChange} className="w-full p-3 border rounded" />
 
                                         <label htmlFor="name">Projecttype *</label>
-                                        <select name="projectType" value={formData.projectType} onChange={handleOnChange} className="w-full p-3 border rounded">
+                                        {state?.errors?.projectType && <p className="text-red-500">{state.errors.projectType}</p>}
+                                        <select name="projectType" value={formData.projectType} className="w-full p-3 border rounded" required>
                                             <option value="">Type project</option>
                                             <option value="Website">Website</option>
                                             <option value="CMS">CMS</option>
                                             <option value="E-commerce">E-commerce</option>
-
                                         </select>
 
                                         <label htmlFor="name">Budget</label>
-                                        <select name="budget" value={formData.budget} onChange={handleOnChange} className="w-full p-3 border rounded">
+                                        <select name="budget" value={formData.budget} className="w-full p-3 border rounded">
                                             <option value="">Budget</option>
                                             <option value="<1500">Minder dan €1.500</option>
                                             <option value="1500-3000">€1.500 - €3.000</option>
@@ -102,17 +112,17 @@ export default function ContactPage() {
                                         </select>
 
                                         <label htmlFor="name">Deadline</label>
-                                        <input name="deadline" type="date" value={formData.deadline} onChange={handleOnChange} className="w-full p-3 border rounded" />
+                                        <input name="deadline" type="date" value={formData.deadline} className="w-full p-3 border rounded" />
 
                                         <label htmlFor="name">Bericht *</label>
-                                        <textarea name="message" placeholder="Bericht" value={formData.message} onChange={handleOnChange} className="w-full p-3 border rounded h-32" />
+                                        {state?.errors?.message && <p className="text-red-500">{state.errors.message}</p>}
+                                        <textarea name="message" placeholder="Bericht" value={formData.message} className="w-full p-3 border rounded h-32" required />
 
-                                        <label htmlFor="name">bedrijfswebsite *</label>
-                                        <input name="company_website" type="hidden" value={formData.company} />
+                                        <input name="company_website" type="hidden" value={formData.companyWebsite} />
 
                                         <div className="flex justify-between">
-                                            <Button type="submit" disabled={loading} className="px-4 py-2 bg-green-500 text-white rounded">
-                                                {loading ? "Versturen..." : "Verstuur"}
+                                            <Button type="submit" disabled={state?.success} className="px-4 py-2 bg-green-500 text-white rounded">
+                                                {state?.success ? "Versturen..." : "Verstuur"}
                                             </Button>
                                         </div>
                                     </form>
