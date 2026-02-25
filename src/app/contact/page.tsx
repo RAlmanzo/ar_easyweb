@@ -7,10 +7,14 @@ import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 import { formSchema } from "@/zod/Contact-form-schema";
 import { Mail, MapPin, Phone } from "lucide-react";
 import * as motion from "motion/react-client"
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { toast } from "sonner"
 
 export default function ContactPage() {
-    const [state, formAction] = useActionState(sendEmail, null)
+    const [state, formAction] = useActionState(sendEmail, {
+        success: false,
+        message: "",
+    });
 
     const [formData, setFormData] = useState({
         name: "",
@@ -27,6 +31,16 @@ export default function ContactPage() {
         email?: string
         phone?: string
     }>({})
+
+    useEffect(() => {
+        if (!state.message) return;
+
+        if (state.success) {
+            toast.success(state.message, { position: "bottom-center" });
+        } else {
+            toast.warning(state.message, { position: "bottom-center" });
+        }
+    }, [state]);
 
     function handleOnChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = e.target
@@ -122,7 +136,7 @@ export default function ContactPage() {
                             <Card className="border-border shadow-sm">
                                 <CardContent className="pt-6">
                                     <div className="flex items-start gap-4 mb-6">
-                                        <div className="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center flex-shrink-0">
+                                        <div className="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
                                             <Mail size={20} />
                                         </div>
                                         <div>
@@ -137,7 +151,7 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex items-start gap-4 mb-6">
-                                        <div className="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center flex-shrink-0">
+                                        <div className="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
                                             <Phone size={20} />
                                         </div>
                                         <div>
@@ -149,7 +163,7 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex items-start gap-4">
-                                        <div className="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center flex-shrink-0">
+                                        <div className="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
                                             <MapPin size={20} />
                                         </div>
                                         <div>
