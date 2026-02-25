@@ -28,7 +28,7 @@ export default function ContactPage() {
         phone?: string
     }>({})
 
-    function handleOnChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    function handleOnChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
         const { name, value } = e.target
 
         setFormData(prev => ({ ...prev, [name]: value }))
@@ -43,18 +43,6 @@ export default function ContactPage() {
             }))
         }
     }
-
-    /*const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };*/
-
-    /*const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        // Form submission logic would go here
-        console.log("Form submitted:", formData)
-        alert("Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.")
-        setFormData({ name: "", company: "", email: "", message: "" })
-    }*/
 
     return (
         <div className="min-h-screen">
@@ -82,7 +70,7 @@ export default function ContactPage() {
                                         <label htmlFor="name">Naam *</label>
                                         {state?.errors?.name && <p className="text-red-500">{state.errors.name}</p>}
 
-                                        <input name="name" placeholder="Naam" value={formData.name} className="w-full p-3 border rounded" required />
+                                        <input name="name" placeholder="Naam" value={formData.name} onChange={handleOnChange} className="w-full p-3 border rounded" required />
 
                                         <label htmlFor="name">Email *</label>
                                         {liveErrors.email && (<p className="text-red-500 text-sm">{liveErrors.email}</p>)}
@@ -96,7 +84,7 @@ export default function ContactPage() {
 
                                         <label htmlFor="name">Projecttype *</label>
                                         {state?.errors?.projectType && <p className="text-red-500">{state.errors.projectType}</p>}
-                                        <select name="projectType" value={formData.projectType} className="w-full p-3 border rounded" required>
+                                        <select name="projectType" value={formData.projectType} onChange={handleOnChange} className="w-full p-3 border rounded" required>
                                             <option value="">Type project</option>
                                             <option value="Website">Website</option>
                                             <option value="CMS">CMS</option>
@@ -104,7 +92,7 @@ export default function ContactPage() {
                                         </select>
 
                                         <label htmlFor="name">Budget</label>
-                                        <select name="budget" value={formData.budget} className="w-full p-3 border rounded">
+                                        <select name="budget" value={formData.budget} onChange={handleOnChange} className="w-full p-3 border rounded">
                                             <option value="">Budget</option>
                                             <option value="<1500">Minder dan €1.500</option>
                                             <option value="1500-3000">€1.500 - €3.000</option>
@@ -112,11 +100,11 @@ export default function ContactPage() {
                                         </select>
 
                                         <label htmlFor="name">Deadline</label>
-                                        <input name="deadline" type="date" value={formData.deadline} className="w-full p-3 border rounded" />
+                                        <input name="deadline" type="date" value={formData.deadline} onChange={handleOnChange} className="w-full p-3 border rounded" />
 
                                         <label htmlFor="name">Bericht *</label>
                                         {state?.errors?.message && <p className="text-red-500">{state.errors.message}</p>}
-                                        <textarea name="message" placeholder="Bericht" value={formData.message} className="w-full p-3 border rounded h-32" required />
+                                        <textarea name="message" placeholder="Bericht" value={formData.message} onChange={handleOnChange} className="w-full p-3 border rounded h-32" required />
 
                                         <input name="company_website" type="hidden" value={formData.companyWebsite} />
 
