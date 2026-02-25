@@ -6,8 +6,6 @@ import { Resend } from "resend"
 //import { Ratelimit } from "@upstash/ratelimit"
 //import { headers } from "next/headers"
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
-
 /*const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL!,
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
@@ -21,6 +19,12 @@ const ratelimit = new Ratelimit({
 
 
 export async function sendEmail(prevState: any, formData: FormData) {
+    if (!process.env.RESEND_API_KEY) {
+        return { success: false, message: "E-mails tijdelijk uitgeschakeld" };
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY!)
+
     const data = Object.fromEntries(formData)
 
     // Honeypot
