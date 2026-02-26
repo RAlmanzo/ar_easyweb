@@ -2,7 +2,15 @@ import { fadeInUp } from "@/lib/animations"
 import * as motion from "motion/react-client"
 import Carousel from "@/components/ui/carousel"
 import Cta from "@/components/sections/cta"
+import Script from "next/script"
+import { getMetadata, getWebPageSchema } from "@/lib/metadata"
 
+export const metadata = getMetadata(
+    "Portfolio - AR EasyWeb | Webdesigner in West-Vlaanderen",
+    "Bekijk mijn recente webdesign en development projecten voor KMO’s in West-Vlaanderen. Van moderne websites tot CMS-oplossingen.",
+    "/portfolio",
+    "/og-portfolioimage.png"
+);
 
 export default function Portfolio() {
     const projects = [
@@ -57,21 +65,37 @@ export default function Portfolio() {
     }
 
     return (
-        <div className="min-h-screen overflow-hidden">
-            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-6xl mx-auto">
-                    <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
-                        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Portfolio</h1>
-                        <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
-                            Een selectie van recente projecten waar ik trots op ben. Van kleine bedrijfswebsites tot complexe
-                            CMS-oplossingen.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
+        <>
+            <Script
+                id="portfolio-webpage-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        getWebPageSchema(
+                            "Portfolio - AR EasyWeb | Webdesigner in West-Vlaanderen",
+                            "Bekijk mijn recente webdesign en development projecten voor KMO’s in West-Vlaanderen. Van moderne websites tot CMS-oplossingen.",
+                            "/portfolio"
+                        )
+                    ),
+                }}
+                strategy="beforeInteractive"
+            />
+            <div className="min-h-screen overflow-hidden">
+                <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
+                            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Portfolio</h1>
+                            <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+                                Een selectie van recente projecten waar ik trots op ben. Van kleine bedrijfswebsites tot complexe
+                                CMS-oplossingen.
+                            </p>
+                        </motion.div>
+                    </div>
+                </section>
 
-            <Carousel projects={projects} />
-            <Cta content={ctaContent} />
-        </div>
+                <Carousel projects={projects} />
+                <Cta content={ctaContent} />
+            </div>
+        </>
     )
 }
