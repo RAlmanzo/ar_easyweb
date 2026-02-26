@@ -3,23 +3,32 @@ import Link from "next/link"
 import { Button } from "../ui/button";
 import LogoText from "../svg/logo-text";
 import * as motion from "motion/react-client"
-import { scaleIn } from "@/lib/animations";
+import { bounce, bounceShadow, scaleIn } from "@/lib/animations";
 
 export default function Hero() {
     return (
         <div className="min-h-screen">
             <section className="pt-2 pb-20 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center pb-12">
-                    <video
-                        src="/ar_easyweb_logo.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-72 md:w-96 h-auto rounded-lg"
-                        preload="metadata"
-                        aria-hidden="true"
-                    >Je browser ondersteunt dit videoformaat niet.</video>
+                    <div className="flex flex-col items-center relative">
+                        <motion.div {...bounce} >
+                            <video
+                                src="/ar_easyweb_logo.mp4"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-72 md:w-96 h-auto rounded-lg"
+                                preload="metadata"
+                                aria-hidden="true"
+                            >Je browser ondersteunt dit videoformaat niet.</video>
+                        </motion.div>
+
+                        <motion.div {...bounceShadow}
+                            className="mt-2 mb-2 w-65 h-2 bg-lime-400 rounded-full blur-sm"
+                        />
+                    </div>
+
                     <h1 className="flex items-center font-extrabold text-4xl md:text-6xl text-foreground">
                         <LogoText className="text-[#32CD32]/70" />
                     </h1>
