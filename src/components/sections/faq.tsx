@@ -1,6 +1,8 @@
 import { fadeInUp } from "@/lib/animations"
 import * as motion from "motion/react-client"
 import AnimatedFAQAccordion from "../ui/animated-faq-accordion"
+import Script from "next/script"
+import { getFAQSchema } from "@/lib/metadata"
 
 export default function FAQ() {
     type FAQItem = {
@@ -72,19 +74,29 @@ export default function FAQ() {
     ]
 
     return (
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-                <motion.div {...fadeInUp} className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-background mb-4 text-balance">
-                        Veelgestelde vragen
-                    </h2>
-                    <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
-                        Antwoorden op de meest voorkomende vragen over mijn diensten.
-                    </p>
-                </motion.div>
+        <>
+            <Script
+                id="faq-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(getFAQSchema(faqs)), // direct de faqs gebruiken
+                }}
+                strategy="afterInteractive"
+            />
+            <section className="py-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-3xl mx-auto">
+                    <motion.div {...fadeInUp} className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-background mb-4 text-balance">
+                            Veelgestelde vragen
+                        </h2>
+                        <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+                            Antwoorden op de meest voorkomende vragen over mijn diensten.
+                        </p>
+                    </motion.div>
 
-                <AnimatedFAQAccordion faqs={faqs} />
-            </div>
-        </section>
+                    <AnimatedFAQAccordion faqs={faqs} />
+                </div>
+            </section>
+        </>
     );
 }
