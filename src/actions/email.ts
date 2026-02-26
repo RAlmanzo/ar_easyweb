@@ -16,56 +16,71 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(3, "10 m"), // 3 aanvragen per 10 minuten
 })*/
 
+export type EmailState = {
+  success?: boolean
+  message?: string
+  error?: string
+  errors?: {
+    name?: string[]
+    email?: string[]
+    phone?: string[]
+    projectType?: string[]
+    budget?: string[]
+    deadline?: string[]
+    message?: string[]
+  }
+}
 
 
-export async function sendEmail(prevState: any, formData: FormData) {
-    if (!process.env.RESEND_API_KEY) {
-        return { success: false, message: "E-mails tijdelijk uitgeschakeld" };
-    }
 
-    const resend = new Resend(process.env.RESEND_API_KEY!)
+export async function sendEmail(prevState: EmailState, formData: FormData) {
+  if (!process.env.RESEND_API_KEY) {
+    return { success: false, message: "E-mails tijdelijk uitgeschakeld" };
+  }
 
-    const data = Object.fromEntries(formData)
+  const resend = new Resend(process.env.RESEND_API_KEY!)
 
-    // Honeypot
-    if (data.companyWebsite) {
-        return { success: true, message: "Email succesvol verzonden" }
-    }
+  const data = Object.fromEntries(formData)
 
-    const validatedFormData = formSchema.safeParse(data)
-    if (!validatedFormData.success) {
-        const formFieldErrors = validatedFormData.error.flatten().fieldErrors;
+  // Honeypot
+  if (data.companyWebsite) {
+    return { success: true, message: "Email succesvol verzonden" }
+  }
 
-        return {
-            errors: {
-                name: formFieldErrors?.name,
-                email: formFieldErrors?.email,
-                phone: formFieldErrors?.phone,
-                projectType: formFieldErrors?.projectType,
-                budget: formFieldErrors?.budget,
-                deadline: formFieldErrors?.deadline,
-                message: formFieldErrors?.message,
-            },
-        };
-    }
+  const validatedFormData = formSchema.safeParse(data)
+  if (!validatedFormData.success) {
+    const formFieldErrors = validatedFormData.error.flatten().fieldErrors;
 
-    const { name, email, phone, projectType, budget, deadline, message } = validatedFormData.data
+    return {
+      errors: {
+        name: formFieldErrors?.name,
+        email: formFieldErrors?.email,
+        phone: formFieldErrors?.phone,
+        projectType: formFieldErrors?.projectType,
+        budget: formFieldErrors?.budget,
+        deadline: formFieldErrors?.deadline,
+        message: formFieldErrors?.message,
+      },
+    };
+  }
 
-    // Rate limiting op basis van IP
-    //const ip = headers().get("x-forwarded-for") ?? "anonymous"
-    //const { success } = await ratelimit.limit(ip)
+  const { name, email, phone, projectType, budget, deadline, message } = validatedFormData.data
 
-    /*if (!success) {
-      return { error: "Te veel aanvragen. Probeer later opnieuw." }
-    }*/
+  // Rate limiting op basis van IP
+  //const ip = headers().get("x-forwarded-for") ?? "anonymous"
+  //const { success } = await ratelimit.limit(ip)
 
-    try {
-        await resend.emails.send({
-            from: email,
-            to: "ralmanzo@gmail.com",
-            subject: `Nieuwe projectaanvraag van ${name}`,
-            replyTo: email,
-            html: `
+  /*if (!success) {
+    return { error: "Te veel aanvragen. Probeer later opnieuw." }
+  }*/
+
+  try {
+    await resend.emails.send({
+      from: email,
+      to: "ralmanzo@gmail.com",
+      subject: `Nieuwe projectaanvraag van ${name}`,
+      replyTo: email,
+      html: `
             <div style="font-family:Arial,sans-serif;background:#f9f9f9;padding:40px;">
               <div style="max-width:600px;margin:auto;background:#ffffff;padding:30px;border-radius:12px;">
                 <h2 style="margin-bottom:20px;">Nieuwe Projectaanvraag 🚀</h2>
@@ -81,15 +96,15 @@ export async function sendEmail(prevState: any, formData: FormData) {
               </div>
             </div>
           `,
-        })
+    })
 
-        // Auto-reply naar klant (branded)
-        await resend.emails.send({
-            from: "ralmanzo@gmail.com",
-            to: email,
-            subject: "Bedankt voor je aanvraag 🙌",
-            replyTo: "ralmanzo@gmail.com",
-            html: `
+    // Auto-reply naar klant (branded)
+    await resend.emails.send({
+      from: "ralmanzo@gmail.com",
+      to: email,
+      subject: "Bedankt voor je aanvraag 🙌",
+      replyTo: "ralmanzo@gmail.com",
+      html: `
             <div style="font-family:Arial,sans-serif;background:#f4f4f4;padding:40px;">
               <div style="max-width:600px;margin:auto;background:#ffffff;padding:30px;border-radius:12px;">
                 <h2 style="color:#000;">Bedankt ${name}!</h2>
@@ -99,10 +114,10 @@ export async function sendEmail(prevState: any, formData: FormData) {
               </div>
             </div>
           `,
-        })
+    })
 
-        return { success: true, message: "Email succesvol verzonden" }
-    } catch {
-        return { error: "Er ging iets mis bij het verzenden." }
-    }
+    return { success: true, message: "Email succesvol verzonden" }
+  } catch {
+    return { error: "Er ging iets mis bij het verzenden." }
+  }
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { sendEmail } from "@/actions/email";
+import { EmailState, sendEmail } from "@/actions/email";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
@@ -11,10 +11,13 @@ import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner"
 
 export default function ContactPage() {
-    const [state, formAction] = useActionState(sendEmail, {
-        success: false,
-        message: "",
-    });
+    const [state, formAction] = useActionState<EmailState, FormData>(
+        sendEmail,
+        {
+            success: false,
+            message: "",
+        }
+    )
 
     const [formData, setFormData] = useState({
         name: "",
