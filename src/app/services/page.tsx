@@ -3,6 +3,15 @@ import ServiceCard from "@/components/ui/service-card";
 import { fadeInLeft, fadeInRight, fadeInUp } from "@/lib/animations";
 import { Code, Database, Layers, Palette, Smartphone, Zap } from "lucide-react";
 import * as motion from "motion/react-client"
+import Script from "next/script";
+import { getWebPageSchema, getMetadata } from "@/lib/metadata";
+
+export const metadata = getMetadata(
+    "Diensten - AR EasyWeb | Webdesigner in West-Vlaanderen",
+    "Mijn web diensten: Frontend websites, Headless CMS, responsive design, en SEO-optimalisatie. Snel, modern en schaalbaar.",
+    "/about",
+    "/og-servicesimage.png"
+);
 
 export default function Services() {
     const firstServiceContent = {
@@ -112,52 +121,68 @@ export default function Services() {
     }
 
     return (
-        <div className="min-h-screen">
-            <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-                <div className="max-w-6xl mx-auto">
-                    <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
-                        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Diensten</h1>
-                        <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
-                            Van eenvoudige websites tot geavanceerde CMS-oplossingen. Ik help je met de juiste technologie voor jouw
-                            project.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            <ServiceCard {...firstServiceContent} />
-            <ServiceCard {...secondServiceContent} />
-
-            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-                <div className="max-w-6xl mx-auto">
-                    <motion.div {...fadeInUp} className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Hoe werken we samen?</h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
-                            Een duidelijk proces van start tot finish
-                        </p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-4 gap-8">
-                        {steps.map((step, index) => (
-                            <motion.div
-                                key={step.step}
-                                initial={{ opacity: 0, y: 100 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: false, margin: "-100px" }}
-                                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                <div className="text-center">
-                                    <div className="text-5xl font-bold text-[#32CD32] mb-4">{step.step}</div>
-                                    <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
-                                    <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-                                </div>
-                            </motion.div>
-                        ))}
+        <>
+            <Script
+                id="services-webpage-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        getWebPageSchema(
+                            "Diensten - Web Development Services",
+                            "Frontend websites, CMS-oplossingen en webdevelopment services",
+                            "/services"
+                        )
+                    ),
+                }}
+                strategy="afterInteractive"
+            />
+            <div className="min-h-screen">
+                <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto">
+                            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">Diensten</h1>
+                            <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+                                Van eenvoudige websites tot geavanceerde CMS-oplossingen. Ik help je met de juiste technologie voor jouw
+                                project.
+                            </p>
+                        </motion.div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <Cta content={ctaContent} />
-        </div>
+                <ServiceCard {...firstServiceContent} />
+                <ServiceCard {...secondServiceContent} />
+
+                <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+                    <div className="max-w-6xl mx-auto">
+                        <motion.div {...fadeInUp} className="text-center mb-16">
+                            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Hoe werken we samen?</h2>
+                            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
+                                Een duidelijk proces van start tot finish
+                            </p>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-4 gap-8">
+                            {steps.map((step, index) => (
+                                <motion.div
+                                    key={step.step}
+                                    initial={{ opacity: 0, y: 100 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    <div className="text-center">
+                                        <div className="text-5xl font-bold text-[#32CD32] mb-4">{step.step}</div>
+                                        <h3 className="text-xl font-semibold text-foreground mb-3">{step.title}</h3>
+                                        <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <Cta content={ctaContent} />
+            </div>
+        </>
     );
 }
