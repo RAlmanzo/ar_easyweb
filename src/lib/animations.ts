@@ -3,28 +3,28 @@ import { MotionProps } from "motion/react"
 export const fadeInUp: MotionProps = {
     initial: { opacity: 0, y: 150 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: false, margin: "-100px" },
+    viewport: { once: true, margin: "-100px" },
     transition: { duration: 2, ease: [0.22, 1, 0.36, 1] },
 }
 
 export const fadeInLeft: MotionProps = {
     initial: { opacity: 0, x: -150 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, margin: "-100px" },
+    viewport: { once: true, margin: "-100px" },
     transition: { duration: 2, ease: [0.22, 1, 0.36, 1] },
 }
 
 export const fadeInRight: MotionProps = {
     initial: { opacity: 0, x: 150 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, margin: "-100px" },
+    viewport: { once: true, margin: "-100px" },
     transition: { duration: 2, ease: [0.22, 1, 0.36, 1] },
 }
 
 export const scaleIn: MotionProps = {
     initial: { opacity: 0, scale: 0.5 },
     whileInView: { opacity: 1, scale: 1 },
-    viewport: { once: false, margin: "-100px" },
+    viewport: { once: true, margin: "-100px" },
     transition: { duration: 3, ease: [0.22, 1, 0.36, 1] },
 }
 

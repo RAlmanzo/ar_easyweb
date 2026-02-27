@@ -46,11 +46,12 @@ export default function Carousel({ projects }: CarouselProps) {
                     >
                         <Link href={`/portfolio/${project.id}`}>
                             <Card className="h-full flex flex-col overflow-hidden shadow-[0_10px_15px_rgba(255,0,0,0.5)] -xl transition-all p-1">
-                                <div className="relative h-30 sm:h-37.5 md:h-45 w-full overflow-hidden rounded-xl">
+                                <div className="relative h-37.5 md:h-45 w-full overflow-hidden rounded-xl">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
                                         fill
+                                        sizes="(max-width: 768px) 35vw, 20vw"
                                         className="object-cover transition-transform duration-300 hover:scale-125"
                                     />
                                 </div>

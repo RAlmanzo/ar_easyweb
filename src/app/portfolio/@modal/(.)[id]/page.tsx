@@ -2,15 +2,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import * as motion from "motion/react-client"
 import { Calendar } from "lucide-react";
-import { use } from "react";
 import ProjectDetailsModal from "@/components/modals/projectdetails";
-
 import { projects } from "../../[id]/page";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params)
+export default async function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
     const project = projects[id]
 
     if (!project) {

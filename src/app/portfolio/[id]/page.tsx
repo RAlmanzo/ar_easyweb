@@ -2,10 +2,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import * as motion from "motion/react-client"
 import { ArrowLeft, Calendar } from "lucide-react";
-import { use } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import Cta from "@/components/sections/cta";
+import { Metadata } from "next";
+import Script from "next/script";
+import { getBreadcrumbSchema, getProjectMetadata, getWebPageSchema } from "@/lib/metadata";
 
 export const projects: Record<string, {
     title: string;
@@ -114,8 +116,24 @@ const ctaContent = {
     buttonText: "Neem contact op",
 }
 
-export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params)
+export async function generateMetadata(
+    { params }: { params: Promise<{ id: string }> }
+): Promise<Metadata> {
+    const { id } = await params;
+    const project = projects[id];
+
+    if (!project) {
+        return {
+            title: "Project Niet Gevonden",
+            description: "Dit project bestaat niet.",
+        };
+    }
+
+    return getProjectMetadata(project, id);
+}
+
+export default async function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
     const project = projects[id]
 
     if (!project) {
@@ -131,110 +149,142 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
         )
     }
 
+    const breadcrumbs = [
+        { name: "Home", path: "/" },
+        { name: "Portfolio", path: "/portfolio" },
+        { name: project.title, path: `/portfolio/${id}` },
+    ]
+
     return (
-        <div className="min-h-screen">
-            <section className="pt-30 pb-2 px-4 md:px-6">
-                <div className="max-w-5xl mx-auto">
-                    <Link
-                        href="/portfolio"
-                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-3"
-                    >
-                        <ArrowLeft size={20} />
-                        <span>Terug naar portfolio</span>
-                    </Link>
+        <>
+            <Script
+                id={`project-${id}-schema`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        getWebPageSchema(
+                            project.title,
+                            project.challenge,
+                            `/portfolio/${id}`,
+                            project.year
+                        )
+                    ),
+                }}
+                strategy="beforeInteractive"
+            />
+            <Script
+                id={`project-${id}-breadcrumb-schema`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(getBreadcrumbSchema(breadcrumbs)),
+                }}
+                strategy="beforeInteractive"
+            />
 
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <div className="text-sm text-accent font-medium mb-4">{project.category}</div>
-                        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">{project.title}</h1>
+            <div className="min-h-screen">
+                <section className="pt-30 pb-2 px-4 md:px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <Link
+                            href="/portfolio"
+                            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-3"
+                        >
+                            <ArrowLeft size={20} />
+                            <span>Terug naar portfolio</span>
+                        </Link>
 
-                        <div className="flex flex-wrap gap-6 text-sm text-foreground mb-8">
-                            <div className="flex items-center gap-2">
-                                <Calendar size={16} />
-                                <span>{project.year}</span>
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                            <div className="text-sm text-accent font-medium mb-4">{project.category}</div>
+                            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 text-balance">{project.title}</h1>
+
+                            <div className="flex flex-wrap gap-6 text-sm text-foreground mb-8">
+                                <div className="flex items-center gap-2">
+                                    <Calendar size={16} />
+                                    <span>{project.year}</span>
+                                </div>
+                                <div>
+                                    <span className="font-medium text-foreground">Client:</span> {project.client}
+                                </div>
                             </div>
-                            <div>
-                                <span className="font-medium text-foreground">Client:</span> {project.client}
+
+                            <div className="flex flex-wrap gap-2 mb-8">
+                                {project.tags.map((tag, index) => (
+                                    <span key={index} className="text-sm bg-muted px-3 py-1 rounded-full text-muted-foreground">
+                                        {tag}
+                                    </span>
+                                ))}
                             </div>
-                        </div>
+                        </motion.div>
+                    </div>
+                </section>
 
-                        <div className="flex flex-wrap gap-2 mb-8">
-                            {project.tags.map((tag, index) => (
-                                <span key={index} className="text-sm bg-muted px-3 py-1 rounded-full text-muted-foreground">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
+                <section className="pb-5 px-4 md:px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="aspect-video rounded-lg overflow-hidden shadow-lg"
+                        >
+                            <Image loading="eager" width={500} height={300} src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
+                        </motion.div>
+                    </div>
+                </section>
 
-            <section className="pb-5 px-4 md:px-6">
-                <div className="max-w-5xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="aspect-video rounded-lg overflow-hidden shadow-lg"
-                    >
-                        <Image width={500} height={300} src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
-                    </motion.div>
-                </div>
-            </section>
+                <section className="py-2 pb-10 px-4 md:px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <div className="grid lg:grid-cols-3 gap-12">
+                            <div className="lg:col-span-2 space-y-12">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6 }}
+                                >
+                                    <h2 className="text-2xl font-bold text-foreground mb-4">De Uitdaging</h2>
+                                    <p className="text-muted-foreground leading-relaxed">{project.challenge}</p>
+                                </motion.div>
 
-            <section className="py-2 pb-10 px-4 md:px-6">
-                <div className="max-w-5xl mx-auto">
-                    <div className="grid lg:grid-cols-3 gap-12">
-                        <div className="lg:col-span-2 space-y-12">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <h2 className="text-2xl font-bold text-foreground mb-4">De Uitdaging</h2>
-                                <p className="text-muted-foreground leading-relaxed">{project.challenge}</p>
-                            </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6 }}
+                                >
+                                    <h2 className="text-2xl font-bold text-foreground mb-4">De Oplossing</h2>
+                                    <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
+                                </motion.div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <h2 className="text-2xl font-bold text-foreground mb-4">De Oplossing</h2>
-                                <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
-                            </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6 }}
+                                >
+                                    <h2 className="text-2xl font-bold text-foreground mb-4">Het Resultaat</h2>
+                                    <p className="text-muted-foreground leading-relaxed">{project.result}</p>
+                                </motion.div>
+                            </div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <h2 className="text-2xl font-bold text-foreground mb-4">Het Resultaat</h2>
-                                <p className="text-muted-foreground leading-relaxed">{project.result}</p>
-                            </motion.div>
-                        </div>
-
-                        <div className="space-y-6">
-                            <Card className="border-border shadow-sm">
-                                <CardContent className="pt-6">
-                                    <h3 className="text-lg font-semibold text-foreground mb-4">Diensten</h3>
-                                    <ul className="space-y-2">
-                                        {project.services.map((service, index) => (
-                                            <li key={index} className="text-sm text-muted-foreground">
-                                                • {service}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </CardContent>
-                            </Card>
+                            <div className="space-y-6">
+                                <Card className="border-border shadow-sm">
+                                    <CardContent className="pt-6">
+                                        <h3 className="text-lg font-semibold text-foreground mb-4">Diensten</h3>
+                                        <ul className="space-y-2">
+                                            {project.services.map((service, index) => (
+                                                <li key={index} className="text-sm text-muted-foreground">
+                                                    • {service}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                </Card>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <Cta content={ctaContent} />
-        </div>
+                <Cta content={ctaContent} />
+            </div>
+        </>
     )
 }

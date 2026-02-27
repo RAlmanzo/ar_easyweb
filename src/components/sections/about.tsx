@@ -37,7 +37,7 @@ export default function About({ aboutContent, cardItems }: AboutProps) {
                             key={index}
                             initial={{ opacity: 0, y: 150 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false, margin: "-100px" }}
+                            viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 2, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                         >
                             <Card className="border-border shadow-sm hover:shadow-md transition-shadow">
