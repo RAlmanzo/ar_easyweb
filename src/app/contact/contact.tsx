@@ -79,7 +79,7 @@ export default function Contact() {
                 }}
                 strategy="beforeInteractive"
             />
-            <div className="min-h-screen">
+            <div className="min-h-screen overflow-x-hidden">
                 <section className="w-full pt-32 pb-3 px-4 md:px-6">
                     <div className="max-w-5xl mx-auto">
                         <motion.div {...fadeInUp}
