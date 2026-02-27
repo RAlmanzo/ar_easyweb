@@ -36,7 +36,7 @@ export default function AnimatedFAQAccordion({ faqs }: Props) {
                     variants={itemVariant}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: false, margin: "-50px" }}
+                    viewport={{ once: true, margin: "-50px" }}
                     custom={index}
                 >
                     <AccordionItem value={faq.value} className="rounded-xl border px-4 bg-background">

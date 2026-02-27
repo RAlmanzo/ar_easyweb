@@ -167,7 +167,7 @@ export default function Services() {
                                     key={step.step}
                                     initial={{ opacity: 0, y: 100 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: false, margin: "-100px" }}
+                                    viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                                 >
                                     <div className="text-center">
