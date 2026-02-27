@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import * as motion from "motion/react-client"
 import { ArrowLeft, Calendar } from "lucide-react";
-import { use } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import Cta from "@/components/sections/cta";
@@ -118,10 +117,10 @@ const ctaContent = {
 }
 
 export async function generateMetadata(
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
-
-    const project = projects[params.id];
+    const { id } = await params;
+    const project = projects[id];
 
     if (!project) {
         return {
@@ -130,11 +129,11 @@ export async function generateMetadata(
         };
     }
 
-    return getProjectMetadata(project, params.id);
+    return getProjectMetadata(project, id);
 }
 
-export default function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params)
+export default async function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
     const project = projects[id]
 
     if (!project) {
@@ -226,7 +225,7 @@ export default function ProjectDetails({ params }: { params: Promise<{ id: strin
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="aspect-video rounded-lg overflow-hidden shadow-lg"
                         >
-                            <Image width={500} height={300} src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
+                            <Image loading="eager" width={500} height={300} src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-full object-cover" />
                         </motion.div>
                     </div>
                 </section>
